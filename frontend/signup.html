@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Signup — Fintrack</title>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="auth-body">
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <div class="sidebar-logo">F</div>
+            <h2>Create account</h2>
+            <p>Start tracking your finances</p>
+        </div>
+
+        <!-- INPUTS -->
+        <input type="text" id="fullName" placeholder="Full Name" class="auth-input" />
+        <input type="email" id="email" placeholder="Email" class="auth-input" />
+        <input type="password" id="password" placeholder="Password" class="auth-input" />
+
+        <!-- BUTTON -->
+        <button class="auth-btn" onclick="signup()">Sign Up</button>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+<!-- IMPORTANT: auth logic file -->
+<script src="../frontend/auth.js"></script>
+
+</body>
+</html>

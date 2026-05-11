@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgets — Fintrack</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">F</div>
+            <div>
+                <div class="sidebar-brand-name">Fintrack</div>
+                <div class="sidebar-brand-sub">Finance Dashboard</div>
+            </div>
+        </div>
+
+        <nav>
+            <div class="sidebar-section-label">Main</div>
+
+            <div class="sidebar-nav">
+                <div class="sidebar-item" onclick="goTo('index.html')">
+                    <i class="fas fa-house"></i> Overview
+                </div>
+
+                <div class="sidebar-item" onclick="goTo('transaction.html')">
+                    <i class="fas fa-arrow-right-arrow-left"></i> Transactions
+                </div>
+
+                <div class="sidebar-item" onclick="goTo('analytics.html')">
+                    <i class="fas fa-chart-pie"></i> Analytics
+                </div>
+
+                <div class="sidebar-item active" onclick="goTo('budget.html')">
+                    <i class="fas fa-wallet"></i> Budgets
+                </div>
+            </div>
+
+            <hr class="sidebar-divider" />
+        </nav>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="main-content">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>
+                <span class="greeting-serif">Budget</span> Center ✦
+            </h1>
+
+            <div class="header-controls">
+                <div class="date-picker">
+                    <i class="fas fa-calendar-days"></i>
+                    <span id="currentDateDisplay"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TITLE -->
+        <div class="budget-top">
+            <div>
+                <h2 class="budget-page-title">Monthly Budget Planner</h2>
+                <p class="budget-subtitle">Track goals, insights and spending alerts</p>
+            </div>
+        </div>
+
+        <!-- GOAL SECTION -->
+        <section class="budget-section">
+            <div class="budget-card goal-card">
+
+                <div class="goal-top">
+
+                    <div>
+                        <p class="mini-label">Savings Goal</p>
+                        <h2 id="goalText">₹0 / ₹0</h2>
+
+                        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+                            <input type="number" id="goalInput"
+                                placeholder="Set your savings goal (₹)"
+                                class="auth-input"
+                                style="max-width:220px;">
+
+                            <button class="btn btn-primary" onclick="saveGoal()">
+                                Save Goal
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="goal-percent" id="goalPercent">0%</div>
+
+                </div>
+
+                <div class="goal-progress">
+                    <div class="goal-progress-fill" id="goalFill"></div>
+                </div>
+
+                <p class="goal-note" id="goalNote">
+                    Set your goal to track progress
+                </p>
+
+            </div>
+        </section>
+
+        <!-- INSIGHTS -->
+        <section class="budget-section">
+
+            <div class="section-header">
+                <h3>Smart Insights</h3>
+            </div>
+
+            <div class="insights-grid">
+
+                <div class="budget-card insight-card">
+                    <div class="insight-icon positive">
+                        <i class="fas fa-arrow-trend-up"></i>
+                    </div>
+
+                    <div>
+                        <h4>Savings Overview</h4>
+                        <p>Track your savings after setting a goal.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

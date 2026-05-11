@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fintrack — Personal Finance</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">F</div>
+            <div>
+                <div class="sidebar-brand-name">Fintrack</div>
+                <div class="sidebar-brand-sub">Finance Dashboard</div>
+            </div>
+        </div>
+
+        <nav>
+            <div class="sidebar-section-label">Main</div>
+            <div class="sidebar-nav">
+                <div class="sidebar-item active" onclick="goTo('index.html')">
+                    <i class="fas fa-house"></i> Overview
+                </div>
+                <div class="sidebar-item" onclick="goTo('transaction.html')">
+                    <i class="fas fa-arrow-right-arrow-left"></i> Transactions
+                </div>
+                <div class="sidebar-item" onclick="goTo('analytics.html')">
+                    <i class="fas fa-chart-pie"></i> Analytics
+                </div>
+                <div class="sidebar-item" onclick="goTo('budget.html')">
+                    <i class="fas fa-wallet"></i> Budgets
+                </div>
+        </nav>
+
+    </aside>
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1 id="greetingText"><span class="greeting-serif">Good</span> morning <span>✦</span></h1>
+        <div class="header-controls">
+            <select id="periodFilter" class="dropdown" onchange="refreshUI()">
+                <option value="daily">Today</option>
+                <option value="weekly">This Week</option>
+                <option value="monthly" selected>This Month</option>
+                <option value="yearly">This Year</option>
+            </select>
+            <div class="date-picker">
+                <i class="fas fa-calendar-days"></i>
+                <span id="currentDateDisplay"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="main-content">
+
+        <!-- Stat Cards -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Total Income</span>
+                    <button class="card-menu"><i class="fas fa-ellipsis"></i></button>
+                </div>
+                <div class="amount income-amount">₹0</div>
+                <div class="change income-change">
+                    <i class="fas fa-arrow-up"></i> Live
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Total Expenses</span>
+                    <button class="card-menu"><i class="fas fa-ellipsis"></i></button>
+                </div>
+                <div class="amount expense-amount">₹0</div>
+                <div class="change expense-change">
+                    <i class="fas fa-arrow-down"></i> Live
+                </div>
+            </div>
+
+            <div class="card health-card">
+                <div class="card-header">
+                    <span class="card-title">Financial Health</span>
+                </div>
+                <div class="score-value" id="healthScore">—</div>
+                <div class="score-label" id="healthLabel">Calculating...</div>
+                <div class="score-bar">
+                    <div class="score-fill" id="scoreFill"></div>
+                </div>
+                <div class="score-note">Income vs Expense ratio</div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Annual Overview</span>
+                    <button class="card-menu"><i class="fas fa-ellipsis"></i></button>
+                </div>
+                <div class="chart-container"><canvas id="financeChart"></canvas></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Expense Breakdown</span>
+                </div>
+                <div class="expenses-breakdown">
+                    <div class="total-expenses" id="breakdownTotal">₹0</div>
+                    <div class="breakdown-label">Total this period</div>
+                    <div class="color-bar"></div>
+                    <ul class="expense-categories" id="categoryList"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="card transactions-section">
+            <div class="card-header">
+                <span class="card-title">Recent Transactions</span>
+                <button class="card-menu"><i class="fas fa-ellipsis"></i></button>
+            </div>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="transactionBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== MODALS ===== -->
+    <div id="incomeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Income</h2>
+            </div>
+            <div class="modal-body">
+                <input type="number" id="incomeAmount" class="form-input" placeholder="Amount (₹)">
+                <select id="incomeCategory" class="form-select">
+                    <option value="Salary">Salary</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Investment">Investment</option>
+                </select>
+                <input type="date" id="incomeDate" class="form-input">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('incomeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addIncome()">Add Income</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="expenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Expense</h2>
+            </div>
+            <div class="modal-body">
+                <input type="number" id="expenseAmount" class="form-input" placeholder="Amount (₹)">
+                <select id="expenseCategory" class="form-select">
+                    <option value="food">Food & Health</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="investment">Investment</option>
+                </select>
+                <input type="date" id="expenseDate" class="form-input">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('expenseModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addExpense()">Add Expense</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FABs -->
+    <div class="add-buttons">
+        <button class="fab fab-income" onclick="openIncomeModal()" title="Add Income">
+            <i class="fas fa-plus"></i>
+        </button>
+        <button class="fab fab-expense" onclick="openExpenseModal()" title="Add Expense">
+            <i class="fas fa-minus"></i>
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

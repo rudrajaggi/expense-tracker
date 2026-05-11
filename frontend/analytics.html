@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics — Fintrack</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">F</div>
+            <div>
+                <div class="sidebar-brand-name">Fintrack</div>
+                <div class="sidebar-brand-sub">Finance Dashboard</div>
+            </div>
+        </div>
+
+        <nav>
+            <div class="sidebar-section-label">Main</div>
+
+            <div class="sidebar-nav">
+                <div class="sidebar-item" onclick="goTo('index.html')">
+                    <i class="fas fa-house"></i> Overview
+                </div>
+
+                <div class="sidebar-item" onclick="goTo('transaction.html')">
+                    <i class="fas fa-arrow-right-arrow-left"></i> Transactions
+                </div>
+
+                <div class="sidebar-item active" onclick="goTo('analytics.html')">
+                    <i class="fas fa-chart-pie"></i> Analytics
+                </div>
+
+                <div class="sidebar-item" onclick="goTo('budget.html')">
+                    <i class="fas fa-wallet"></i> Budgets
+                </div>
+            </div>
+
+            <hr class="sidebar-divider" />
+
+        </nav>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="main-content">
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Monthly Overview</span>
+                </div>
+                <canvas id="monthlyChart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Expense Breakdown</span>
+                </div>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Savings Trend</span>
+                </div>
+                <canvas id="savingsChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
