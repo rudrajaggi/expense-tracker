@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ==========================
 async function loadTransactions() {
     try {
-        const res = await fetch("http://localhost:5000/api/transactions", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -114,7 +114,7 @@ async function addIncome() {
     const category = document.getElementById("incomeCategory")?.value;
     const date = document.getElementById("incomeDate")?.value;
 
-    await fetch("http://localhost:5000/api/transactions", {
+    await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -140,7 +140,7 @@ async function addExpense() {
     const category = document.getElementById("expenseCategory")?.value;
     const date = document.getElementById("expenseDate")?.value;
 
-    await fetch("http://localhost:5000/api/transactions", {
+    await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -162,7 +162,7 @@ async function addExpense() {
 // DELETE TRANSACTION (FIXED SINGLE VERSION)
 // ==========================
 async function deleteTransaction(id) {
-    await fetch(`http://localhost:5000/api/transactions/${id}`, {
+    await fetch(`https://expense-tracker-rsur.onrender.comapi/transactions/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
     });
@@ -176,7 +176,7 @@ async function deleteTransaction(id) {
 // ==========================
 async function loadAllTransactionsPage() {
     try {
-        const res = await fetch("http://localhost:5000/api/transactions", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -447,7 +447,7 @@ function applyTxFilters() {
 }
 async function loadTransactionsForFilters() {
     try {
-        const res = await fetch("http://localhost:5000/api/transactions", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -503,7 +503,7 @@ function renderTransactionsPage(data) {
     });
 }
 async function loadAnalytics() {
-    const res = await fetch("http://localhost:5000/api/transactions", {
+    const res = await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
         headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -605,7 +605,7 @@ async function loadBudgetData() {
 
     try {
 
-        const res = await fetch("http://localhost:5000/api/transactions", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/transactions", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -793,7 +793,7 @@ function generateBudgetStats() {
 }
 async function fetchSavingsGoal() {
     try {
-        const res = await fetch("http://localhost:5000/api/auth/goal", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/auth/goal", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -862,7 +862,7 @@ async function saveGoal() {
     }
 
     try {
-        const res = await fetch("http://localhost:5000/api/auth/goal", {
+        const res = await fetch("https://expense-tracker-rsur.onrender.com/api/auth/goal", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
